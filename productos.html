@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }} | SneakerDRAGON</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'principal/css/style.css' %}">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="nav-container">
+            <a class="logo" href="{% url 'inicio' %}">SNEAKER<span>DRAGON</span></a>
+            <ul class="nav-links">
+                <li><a href="{% url 'inicio' %}#drops">DROPS</a></li>
+                <li><a href="{% url 'inicio' %}#categorias">CATEGORÍAS</a></li>
+                <li><a href="{% url 'inicio' %}#contacto">CONTACTO</a></li>
+            </ul>
+            <button class="cart-icon" type="button" aria-label="Abrir carrito" aria-expanded="false" data-cart-open>
+                <span class="icon">🛒</span>
+                <span class="badge" data-cart-count>0</span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="category-page">
+        <section class="category-hero category-hero--{{ slug }}">
+            <div class="category-hero__overlay"></div>
+            <div class="category-hero__content">
+                <a class="back-home" href="{% url 'inicio' %}">← VOLVER AL INICIO</a>
+                <span class="tag">CATÁLOGO SNEAKERDRAGON</span>
+                <h1>{{ titulo }}</h1>
+                <p>{{ descripcion_categoria }}</p>
+            </div>
+        </section>
+
+        <section class="products-section category-products">
+            <div class="section-header category-heading">
+                <span class="section-tag">3 PRODUCTOS</span>
+                <h2>CATÁLOGO {{ titulo }}</h2>
+                <p>Selecciona un producto para revisar su información.</p>
+            </div>
+
+            <div class="products-grid">
+                {% for producto in productos %}
+                    <article class="product-card">
+                        <a class="product-img-container" href="{% url 'detalle_producto' producto.id %}">
+                            {% if producto.destacado %}<span class="sale-tag">HOT</span>{% endif %}
+                            <img src="{% static producto.imagen %}" alt="{{ producto.nombre }}">
+                        </a>
+                        <div class="product-card__info">
+                            <span class="product-category">{{ producto.titulo_categoria }}</span>
+                            <h3>{{ producto.nombre }}</h3>
+                            <p class="product-description">{{ producto.descripcion }}</p>
+                            <div class="stock-line">
+                                <span>Stock disponible</span>
+                                <strong>{{ producto.stock }}</strong>
+                            </div>
+                            <p class="price">${{ producto.precio_formateado }}</p>
+                            <div class="product-actions">
+                                <a class="btn-detail" href="{% url 'detalle_producto' producto.id %}">VER PRODUCTO</a>
+                                <button class="btn-add" type="button" data-add-cart
+                                    data-product-id="{{ producto.id }}"
+                                    data-product-name="{{ producto.nombre }}"
+                                    data-product-price="{{ producto.precio }}"
+                                    data-product-image="{% static producto.imagen %}"
+                                    data-product-stock="{{ producto.stock }}">AÑADIR</button>
+                            </div>
+                        </div>
+                    </article>
+                {% empty %}
+                    <div class="empty-card">
+                        <h3>No hay productos cargados</h3>
+                        <p>Puedes agregarlos desde el administrador de Django.</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="category-navigation">
+                <p>EXPLORA OTRA CATEGORÍA</p>
+                <div class="category-buttons">
+                    <a class="category-button {% if categoria == 'Urbano' %}active{% endif %}" href="{% url 'urbano' %}">URBANO</a>
+                    <a class="category-button {% if categoria == 'Deportivo' %}active{% endif %}" href="{% url 'deportivo' %}">DEPORTIVO</a>
+                    <a class="category-button {% if categoria == 'Lujo' %}active{% endif %}" href="{% url 'lujo' %}">LUJO</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="toast" data-toast role="status" aria-live="polite"></div>
+    <div class="cart-overlay" data-cart-overlay hidden>
+        <button class="cart-backdrop" type="button" data-cart-close aria-label="Cerrar carrito"></button>
+        <aside class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+            <header class="cart-header">
+                <div>
+                    <span class="section-tag">SNEAKERDRAGON</span>
+                    <h2 id="cart-title">TU CARRITO</h2>
+                </div>
+                <button class="cart-close" type="button" data-cart-close aria-label="Cerrar carrito">&times;</button>
+            </header>
+            <div class="cart-content">
+                <p class="cart-empty" data-cart-empty>Tu carrito está vacío. ¡Encuentra tu próximo par!</p>
+                <div class="cart-items" data-cart-items></div>
+            </div>
+            <footer class="cart-footer">
+                <button class="cart-clear" type="button" data-cart-clear>VACIAR CARRITO</button>
+                <div class="cart-total"><span>Subtotal</span><strong data-cart-total>$0</strong></div>
+                <button class="cart-checkout" type="button" data-cart-checkout>FINALIZAR COMPRA</button>
+                <p class="cart-note" data-cart-note>El envío y el pago se coordinan al finalizar la compra.</p>
+            </footer>
+        </aside>
+    </div>
+    <footer class="main-footer">
+        <p>&copy; 2026 SneakerDRAGON. CATEGORÍA {{ titulo }}.</p>
+    </footer>
+    <script src="{% static 'principal/js/store.js' %}"></script>
+</body>
+</html>
