@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title description">
+  <title id="title">Ilustración original de una zapatilla</title>
+  <desc id="description">Zapatilla blanca con detalles rojos sobre un fondo oscuro.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#292020"/>
+      <stop offset="1" stop-color="#0d0d0d"/>
+    </linearGradient>
+    <linearGradient id="shoe" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#c9c9c9"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#ff3333" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#ff3333" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#background)"/>
+  <circle cx="850" cy="370" r="340" fill="url(#glow)"/>
+  <path d="M92 617c129-36 226-70 310-147l126-123c26-25 64-29 94-12l137 77c72 40 127 66 215 78l68 9c35 5 61 34 61 69v29c0 34-27 61-61 61H144c-42 0-68-22-68-49 0-20 6-37 16-52z" fill="#080808" opacity=".58"/>
+  <path d="M120 562c97-17 184-51 258-119l141-130c26-24 63-28 94-10l144 82c67 38 134 63 210 73l69 9c36 5 64 35 64 72v20c0 32-26 58-58 58H168c-45 0-72-19-72-43 0-36 8-62 24-82z" fill="url(#shoe)" stroke="#fff" stroke-width="8" stroke-linejoin="round"/>
+  <path d="m477 321 27 82 109 40m-137-17 124 44m-150-18 126 43m-156-18 125 43" fill="none" stroke="#262626" stroke-width="13" stroke-linecap="round"/>
+  <path d="m626 315 115 64c-27 63-76 100-143 110l-47-87z" fill="#ff3333"/>
+  <path d="M106 564c113-17 205-55 285-129m357 38c72 37 139 58 217 67l70 9" fill="none" stroke="#777" stroke-width="9" stroke-linecap="round"/>
+  <path d="M100 640h907c-4 38-32 64-74 64H166c-43 0-67-19-66-64z" fill="#ff3333"/>
+  <path d="M158 670h794" stroke="#fff" stroke-opacity=".72" stroke-width="8" stroke-linecap="round"/>
+  <text x="600" y="755" fill="#d5d5d5" font-family="Arial, sans-serif" font-size="24" letter-spacing="9" text-anchor="middle">SNEAKERDRAGON</text>
+</svg>
